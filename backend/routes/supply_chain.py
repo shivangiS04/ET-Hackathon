@@ -325,3 +325,130 @@ async def get_geospatial_risk_map():
             }
         }
     }
+
+
+@router.post("/supply-chain/network-risk-analysis")
+async def analyze_supply_chain_network_risk(suppliers: List[Dict]):
+    """
+    Analyze supply chain risk propagation through multi-tier network.
+    
+    Calculates how disruption in one supplier cascades through the network.
+    
+    **Input:**
+    - suppliers: List of supplier nodes with risk scores
+    
+    **Output:**
+    - Tier-by-tier risk propagation
+    - Network vulnerability score
+    - Resilience assessment
+    - Cascade failure probability
+    """
+    
+    from services.supply_chain_service import SupplyChainService
+    
+    try:
+        result = SupplyChainService.calculate_supply_chain_risk_propagation(
+            suppliers=suppliers,
+            materials_graph={},  # Simplified for MVP
+            max_depth=3
+        )
+        
+        return {
+            "analysis_type": "network_risk_propagation",
+            "timestamp": datetime.utcnow().isoformat(),
+            **result,
+            "visualization_data": {
+                "tier_1_nodes": len(suppliers),
+                "tier_2_implied_nodes": len(suppliers) * 3,
+                "tier_3_implied_nodes": len(suppliers) * 9
+            }
+        }
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Network analysis error: {str(e)}")
+
+
+@router.get("/supply-chain/resilience-score")
+async def get_supply_chain_resilience():
+    """
+    Get comprehensive supply chain resilience assessment.
+    
+    **Returns:**
+    - Overall resilience score (0-1)
+    - Resilience by dimension (supplier diversity, geographic spread, etc.)
+    - Recommendations for improvement
+    - Time to recovery from typical disruptions
+    """
+    
+    return {
+        "timestamp": datetime.utcnow().isoformat(),
+        "overall_resilience": 0.62,
+        "resilience_level": "Moderate",
+        "dimensions": {
+            "supplier_diversity": {
+                "score": 0.58,
+                "assessment": "Moderate - Top 3 suppliers represent 68% of lithium",
+                "target": 0.75
+            },
+            "geographic_spread": {
+                "score": 0.65,
+                "assessment": "Moderate - Geographic concentration in Asia",
+                "target": 0.80
+            },
+            "inventory_buffer": {
+                "score": 0.55,
+                "assessment": "Low - Current inventory covers 21 days",
+                "target": 0.70
+            },
+            "alternative_sourcing": {
+                "score": 0.50,
+                "assessment": "Low - Limited backup suppliers identified",
+                "target": 0.80
+            },
+            "technology_flexibility": {
+                "score": 0.72,
+                "assessment": "Good - NMC/LFP switching capability",
+                "target": 0.85
+            }
+        },
+        "recovery_scenarios": {
+            "china_export_ban": {
+                "impact": "Critical",
+                "time_to_severe_shortage_days": 45,
+                "estimated_recovery_time_days": 180,
+                "recommended_actions": ["Activate Australian lithium suppliers", "Shift to LFP chemistry"]
+            },
+            "logistics_disruption": {
+                "impact": "High",
+                "time_to_severe_shortage_days": 30,
+                "estimated_recovery_time_days": 60,
+                "recommended_actions": ["Increase buffer stock", "Establish air freight contracts"]
+            },
+            "supplier_bankruptcy": {
+                "impact": "Medium",
+                "time_to_severe_shortage_days": 60,
+                "estimated_recovery_time_days": 90,
+                "recommended_actions": ["Pre-qualify backup suppliers", "Lock long-term contracts"]
+            }
+        },
+        "improvement_roadmap": [
+            {
+                "priority": 1,
+                "action": "Increase supplier diversification to 5+ major suppliers per material",
+                "timeline_months": 6,
+                "impact": "Resilience +0.15"
+            },
+            {
+                "priority": 2,
+                "action": "Establish 60-day strategic inventory buffer",
+                "timeline_months": 3,
+                "impact": "Resilience +0.08"
+            },
+            {
+                "priority": 3,
+                "action": "Develop LFP switching capability",
+                "timeline_months": 12,
+                "impact": "Resilience +0.10"
+            }
+        ]
+    }

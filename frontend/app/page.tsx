@@ -34,7 +34,9 @@ export default function Home() {
               <Link href="/battery" className="text-gray-700 hover:text-green-600 font-medium">Battery Health</Link>
               <Link href="/supply-chain" className="text-gray-700 hover:text-orange-600 font-medium">Supply Chain</Link>
               <Link href="/fleet" className="text-gray-700 hover:text-blue-600 font-medium">Fleet Readiness</Link>
-              <a href="http://localhost:8000/docs" target="_blank" className="text-gray-700 hover:text-purple-600 font-medium">API Docs</a>
+              <Link href="/advanced-features" className="text-gray-700 hover:text-purple-600 font-medium">Advanced Features</Link>
+              <Link href="/reports" className="text-gray-700 hover:text-indigo-600 font-medium">Reports</Link>
+              <a href="http://localhost:8000/docs" target="_blank" className="text-gray-700 hover:text-slate-600 font-medium">API Docs</a>
             </nav>
           </div>
 
@@ -44,6 +46,8 @@ export default function Home() {
               <Link href="/battery" className="block px-4 py-2 hover:bg-gray-100 rounded text-gray-700">Battery Health</Link>
               <Link href="/supply-chain" className="block px-4 py-2 hover:bg-gray-100 rounded text-gray-700">Supply Chain</Link>
               <Link href="/fleet" className="block px-4 py-2 hover:bg-gray-100 rounded text-gray-700">Fleet Readiness</Link>
+              <Link href="/advanced-features" className="block px-4 py-2 hover:bg-gray-100 rounded text-gray-700">Advanced Features</Link>
+              <Link href="/reports" className="block px-4 py-2 hover:bg-gray-100 rounded text-gray-700">Reports</Link>
               <a href="http://localhost:8000/docs" target="_blank" className="block px-4 py-2 hover:bg-gray-100 rounded text-gray-700">API Docs</a>
             </nav>
           )}
@@ -105,15 +109,15 @@ export default function Home() {
           </div>
 
           <div className="bg-white rounded-lg border border-gray-200 p-8 hover:shadow-lg transition">
-            <div className="bg-blue-100 rounded-lg p-3 w-12 h-12 flex items-center justify-center mb-4">
-              <TrendingUp className="w-6 h-6 text-blue-600" />
+            <div className="bg-purple-100 rounded-lg p-3 w-12 h-12 flex items-center justify-center mb-4">
+              <Zap className="w-6 h-6 text-purple-600" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Fleet Readiness</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Advanced Intelligence</h3>
             <p className="text-gray-600 text-sm">
-              Assess EV procurement readiness, generate transition roadmaps, and track net-zero progress
+              Scenario simulation, anomaly detection, predictive alerts, and competitive benchmarking for strategic decision-making
             </p>
-            <Link href="/fleet" className="text-blue-600 font-medium mt-4 inline-block hover:underline">
-              View Roadmap →
+            <Link href="/advanced-features" className="text-purple-600 font-medium mt-4 inline-block hover:underline">
+              Explore Features →
             </Link>
           </div>
         </div>

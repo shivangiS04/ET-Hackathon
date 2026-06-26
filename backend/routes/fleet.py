@@ -356,3 +356,115 @@ async def get_carbon_impact_tracking():
             "Partner with carbon credit platforms for offsetting"
         ]
     }
+
+
+@router.post("/fleet/tco-analysis")
+async def calculate_tco_comparison(
+    vehicle_type: str,
+    annual_distance_km: float,
+    years: int = 8
+):
+    """
+    Calculate Total Cost of Ownership (TCO) comparison for EV vs Diesel vehicles.
+    
+    **Parameters:**
+    - vehicle_type: "urban", "delivery", "long_haul", or "mining"
+    - annual_distance_km: Annual distance traveled per vehicle
+    - years: Analysis period in years (default: 8)
+    
+    **Returns:**
+    - Diesel TCO breakdown
+    - EV TCO breakdown
+    - Financial advantage analysis
+    - Payback period calculation
+    """
+    from services.fleet_service import FleetService
+    
+    try:
+        tco_result = FleetService.calculate_total_cost_of_ownership(
+            vehicle_type=vehicle_type,
+            annual_distance=annual_distance_km,
+            years_horizon=years,
+            diesel_price_per_liter=90,
+            electricity_price_per_kwh=8.5
+        )
+        
+        return tco_result
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"TCO analysis error: {str(e)}")
+
+
+@router.get("/fleet/roi-calculator")
+async def get_roi_calculator_defaults():
+    """
+    Get default ROI calculator parameters for different vehicle types.
+    
+    **Returns:**
+    - Default pricing
+    - Efficiency metrics
+    - Maintenance costs
+    - Financing options
+    """
+    
+    return {
+        "vehicle_types": {
+            "urban": {
+                "diesel_price_inr": 1500000,
+                "ev_price_inr": 1600000,
+                "diesel_efficiency_km_per_liter": 6,
+                "ev_efficiency_km_per_kwh": 5,
+                "diesel_maintenance_annual_inr": 15000,
+                "ev_maintenance_annual_inr": 8000,
+                "average_annual_distance_km": 60000
+            },
+            "delivery": {
+                "diesel_price_inr": 1800000,
+                "ev_price_inr": 2000000,
+                "diesel_efficiency_km_per_liter": 5,
+                "ev_efficiency_km_per_kwh": 4.5,
+                "diesel_maintenance_annual_inr": 20000,
+                "ev_maintenance_annual_inr": 10000,
+                "average_annual_distance_km": 80000
+            },
+            "long_haul": {
+                "diesel_price_inr": 3500000,
+                "ev_price_inr": 4500000,
+                "diesel_efficiency_km_per_liter": 4,
+                "ev_efficiency_km_per_kwh": 3.5,
+                "diesel_maintenance_annual_inr": 30000,
+                "ev_maintenance_annual_inr": 15000,
+                "average_annual_distance_km": 100000
+            }
+        },
+        "fuel_prices": {
+            "diesel_per_liter_inr": 90,
+            "electricity_per_kwh_inr": 8.5
+        },
+        "financial_parameters": {
+            "ev_subsidy_percent": 15,
+            "loan_interest_rate_percent": 8.5,
+            "depreciation_percent_annual": 12,
+            "inflation_percent_annual": 6
+        },
+        "financing_options": [
+            {
+                "option": "Full Purchase",
+                "downpayment_percent": 100,
+                "interest_rate": 0,
+                "term_months": 0
+            },
+            {
+                "option": "Standard Loan",
+                "downpayment_percent": 20,
+                "interest_rate": 8.5,
+                "term_months": 84
+            },
+            {
+                "option": "Leasing",
+                "downpayment_percent": 10,
+                "interest_rate": 7.5,
+                "term_months": 60
+            }
+        ]
+    }

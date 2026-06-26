@@ -13,6 +13,14 @@ from datetime import datetime
 from routes.battery import router as battery_router
 from routes.supply_chain import router as supply_chain_router
 from routes.fleet import router as fleet_router
+from routes.advanced_features import router as advanced_features_router
+from routes.analytics import router as analytics_router
+
+# Import middleware and services
+from middleware import setup_middleware
+from services.battery_service import BatteryService
+from services.supply_chain_service import SupplyChainService
+from services.fleet_service import FleetService
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -27,7 +35,10 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# CORS Configuration
+# Setup all middleware (error handling, security, rate limiting, etc.)
+setup_middleware(app)
+
+# CORS Configuration (already handled by middleware, but keep for compatibility)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -40,6 +51,8 @@ app.add_middleware(
 app.include_router(battery_router, prefix="/api/v1", tags=["Battery & Health"])
 app.include_router(supply_chain_router, prefix="/api/v1", tags=["Supply Chain"])
 app.include_router(fleet_router, prefix="/api/v1", tags=["Fleet Management"])
+app.include_router(advanced_features_router, tags=["Advanced Features"])
+app.include_router(analytics_router, tags=["Analytics"])
 
 
 @app.get("/")
@@ -54,18 +67,56 @@ async def root():
             "docs": "/docs",
             "battery": "/api/v1/battery",
             "supply_chain": "/api/v1/supply-chain",
-            "fleet": "/api/v1/fleet"
+            "fleet": "/api/v1/fleet",
+            "advanced_features": "/api/v1/scenarios, /api/v1/anomalies, /api/v1/alerts, /api/v1/benchmarks"
         }
     }
 
 
 @app.get("/health")
 async def health_check():
-    """Health check endpoint for monitoring"""
-    return {
-        "status": "healthy",
-        "timestamp": datetime.utcnow().isoformat()
-    }
+    """Health check endpoint for monitoring with cache and performance stats"""
+    try:
+        from utils.response import get_performance_metrics
+        from utils.cache import get_cache
+        
+        cache_stats = get_cache().get_stats()
+        perf_metrics = get_performance_metrics().get_all_stats()
+        
+        return {
+            "status": "healthy",
+            "timestamp": datetime.utcnow().isoformat(),
+            "cache": cache_stats,
+            "performance": {
+                "endpoints_monitored": len(perf_metrics)
+            }
+        }
+    except Exception as e:
+        # Fallback if utils not available
+        return {
+            "status": "healthy",
+            "timestamp": datetime.utcnow().isoformat()
+        }
+
+
+@app.get("/api/v1/metrics")
+async def get_api_metrics():
+    """Get API performance and cache metrics"""
+    try:
+        from utils.response import get_performance_metrics
+        from utils.cache import get_cache
+        
+        cache_stats = get_cache().get_stats()
+        perf_metrics = get_performance_metrics().get_all_stats()
+        
+        return {
+            "timestamp": datetime.utcnow().isoformat(),
+            "cache": cache_stats,
+            "performance": perf_metrics,
+            "recommendation": "Good performance" if cache_stats.get("hit_rate_percent", 0) > 30 else "Consider enabling caching"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Metrics error: {str(e)}")
 
 
 @app.exception_handler(HTTPException)

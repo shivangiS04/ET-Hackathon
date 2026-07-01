@@ -5,7 +5,7 @@ Entry point for all API services
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, PlainTextResponse
 import logging
 from datetime import datetime
 
@@ -21,6 +21,7 @@ from middleware import setup_middleware
 from services.battery_service import BatteryService
 from services.supply_chain_service import SupplyChainService
 from services.fleet_service import FleetService
+from metrics import get_metrics_collector
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -117,6 +118,44 @@ async def get_api_metrics():
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Metrics error: {str(e)}")
+
+
+@app.get("/metrics", response_class=PlainTextResponse)
+async def get_prometheus_metrics():
+    """
+    Prometheus metrics endpoint in OpenMetrics text format
+    
+    This endpoint exposes platform metrics suitable for scraping by Prometheus
+    
+    Example Prometheus configuration:
+    ```yaml
+    global:
+      scrape_interval: 15s
+    scrape_configs:
+      - job_name: 'ev-platform'
+        static_configs:
+          - targets: ['localhost:8000']
+        metrics_path: '/metrics'
+    ```
+    
+    Common alerts:
+    - High error rate: rate(ev_errors_total[5m]) > 0.05
+    - Slow response: ev_response_time_ms > 500
+    - Platform down: up == 0
+    """
+    metrics_collector = get_metrics_collector()
+    return metrics_collector.get_metrics_prometheus()
+
+
+@app.get("/metrics/json")
+async def get_metrics_json():
+    """
+    Metrics endpoint in JSON format for programmatic consumption
+    
+    Alternative to Prometheus format for systems that prefer JSON
+    """
+    metrics_collector = get_metrics_collector()
+    return metrics_collector.get_metrics_json()
 
 
 @app.exception_handler(HTTPException)

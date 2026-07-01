@@ -24,18 +24,31 @@ class ErrorHandlingMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next: Callable) -> JSONResponse:
         """
         Handle exceptions and standardize error responses.
+        Also records metrics for Prometheus.
         """
+        from metrics import get_metrics_collector
+        import time
+        
         try:
             # Log incoming request
             logger.info(f"➡️  {request.method} {request.url.path}")
             
+            # Record start time for metrics
+            start_time = time.time()
+            
             response = await call_next(request)
+            
+            # Record metrics
+            duration_ms = (time.time() - start_time) * 1000
+            metrics_collector = get_metrics_collector()
+            metrics_collector.record_request(request.url.path, duration_ms, response.status_code)
             
             # Log successful response
             if response.status_code < 400:
-                logger.info(f"✅ {request.method} {request.url.path} - Status: {response.status_code}")
+                logger.info(f"✅ {request.method} {request.url.path} - Status: {response.status_code} - {duration_ms:.2f}ms")
             else:
                 logger.warning(f"⚠️  {request.method} {request.url.path} - Status: {response.status_code}")
+                metrics_collector.record_error(f"http_{response.status_code}")
             
             return response
         
@@ -223,3 +236,33 @@ def setup_middleware(app):
     app.add_middleware(ErrorHandlingMiddleware)
     
     logger.info("✅ All middleware registered successfully")
+    logger.info("💡 JWT authentication framework available - see auth.py for production setup")
+
+
+# ============================================================================
+# JWT AUTHENTICATION - PRODUCTION SKELETON
+# ============================================================================
+# 
+# To enable JWT authentication on protected endpoints:
+#
+# 1. Import in routes:
+#    from auth import get_current_user, require_role, Permission, UserRole
+#
+# 2. Add to protected routes:
+#    @router.get("/protected", tags=["Protected"])
+#    async def protected_endpoint(current_user = Depends(get_current_user)):
+#        '''This endpoint requires valid JWT token'''
+#        return {"authenticated_user": current_user["sub"]}
+#
+# 3. Test with mock token:
+#    from auth import get_mock_user_token
+#    token = get_mock_user_token("demo_user")
+#    # Use token: Authorization: Bearer <token>
+#
+# For production deployment, see auth.py for:
+# - User database integration
+# - OAuth2/SSO setup
+# - Permission-based access control
+# - Token refresh mechanisms
+# - Audit logging
+# ============================================================================

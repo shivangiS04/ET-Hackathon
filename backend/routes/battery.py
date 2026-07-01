@@ -212,3 +212,30 @@ async def get_fleet_battery_summary():
         "estimated_fleet_replacement_cost_inr": 4500000,
         "generated_at": datetime.utcnow().isoformat()
     }
+
+
+@router.get("/battery/validation/synthetic-test")
+async def get_synthetic_validation_metrics():
+    """
+    Get battery prediction model validation metrics on synthetic test set.
+    
+    Demonstrates model accuracy and generalization capability:
+    - RMSE (Root Mean Square Error): ~2-3% indicates good fit
+    - MAE (Mean Absolute Error): Individual prediction error
+    - R² (Coefficient of Determination): 0.85+ indicates strong correlation
+    - MAPE (Mean Absolute Percentage Error): Percentage error
+    
+    **Returns:**
+    - Validation status (pass/fail)
+    - Performance metrics with thresholds
+    - Model confidence level
+    - Interpretation of results
+    """
+    
+    validation_result = BatteryService.validate_synthetic_predictions()
+    
+    return APIResponse(
+        status=ResponseStatus.SUCCESS,
+        data=validation_result,
+        message="Battery prediction model validation completed"
+    ).to_dict()

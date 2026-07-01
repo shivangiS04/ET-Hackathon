@@ -9,12 +9,14 @@ services:
     ports:
       - "8000:8000"
     environment:
+      - DATABASE_URL=postgresql://ev_user:ev_password@postgres:5432/ev_fleet_db
       - MONGODB_URL=mongodb://mongo:27017
       - NEO4J_URL=bolt://neo4j:7687
       - NEO4J_USER=neo4j
       - NEO4J_PASSWORD=password
       - REDIS_URL=redis://redis:6379
     depends_on:
+      - postgres
       - mongo
       - neo4j
       - redis
@@ -76,7 +78,29 @@ services:
     networks:
       - ev-network
 
+  # PostgreSQL - Primary Database for Production
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=ev_user
+      - POSTGRES_PASSWORD=ev_password
+      - POSTGRES_DB=ev_fleet_db
+      - POSTGRES_INITDB_ARGS=-c shared_preload_libraries=pg_stat_statements
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/init_db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ev_user -d ev_fleet_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ev-network
+
 volumes:
+  postgres_data:
   mongo_data:
   neo4j_data:
   redis_data:

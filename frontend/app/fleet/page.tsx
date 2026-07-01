@@ -22,6 +22,94 @@ export default function FleetPage() {
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Financial Hero Metrics - PROMINENT */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+          <div className="bg-gradient-to-br from-green-600 to-emerald-600 rounded-lg p-8 text-white shadow-lg">
+            <p className="text-sm font-semibold opacity-90 mb-2">Annual Savings Per Vehicle</p>
+            <p className="text-5xl font-bold mb-2">₹3.2L</p>
+            <p className="text-sm opacity-80">Diesel: ₹6.0L vs EV: ₹2.8L</p>
+            <div className="mt-4 pt-4 border-t border-white border-opacity-20">
+              <p className="text-xs font-semibold">Fleet-wide: ₹50L/year (50 vehicles)</p>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg p-8 text-white shadow-lg">
+            <p className="text-sm font-semibold opacity-90 mb-2">5-Year ROI</p>
+            <p className="text-5xl font-bold mb-2">₹160Cr</p>
+            <p className="text-sm opacity-80">Total cumulative savings across fleet</p>
+            <div className="mt-4 pt-4 border-t border-white border-opacity-20">
+              <p className="text-xs font-semibold">Year 1: ₹25Cr | Year 5: ₹160Cr</p>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-orange-600 to-amber-600 rounded-lg p-8 text-white shadow-lg">
+            <p className="text-sm font-semibold opacity-90 mb-2">Payback Period</p>
+            <p className="text-5xl font-bold mb-2">4.2 yrs</p>
+            <p className="text-sm opacity-80">Investment: ₹17.5Cr | Infrastructure: ₹3.5Cr</p>
+            <div className="mt-4 pt-4 border-t border-white border-opacity-20">
+              <p className="text-xs font-semibold">NPV (10yr): ₹49.9Cr @ 12% discount</p>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg p-8 text-white shadow-lg">
+            <p className="text-sm font-semibold opacity-90 mb-2">Total Fleet Investment</p>
+            <p className="text-5xl font-bold mb-2">₹21Cr</p>
+            <p className="text-sm opacity-80">50 EVs @ ₹35L + Infrastructure</p>
+            <div className="mt-4 pt-4 border-t border-white border-opacity-20">
+              <p className="text-xs font-semibold">FAME subsidy covers: ₹5.5Cr (26%)</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Financial Breakdown Table */}
+        <div className="bg-white rounded-lg border border-gray-200 p-8 mb-12 shadow">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6">Financial Impact Summary</h3>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50 border-b border-gray-200">
+                <tr>
+                  <th className="px-6 py-4 text-left font-semibold text-gray-900">Metric</th>
+                  <th className="px-6 py-4 text-center font-semibold text-red-600">Diesel Baseline (56 vehicles)</th>
+                  <th className="px-6 py-4 text-center font-semibold text-green-600">EV Fleet (50 vehicles)</th>
+                  <th className="px-6 py-4 text-center font-semibold text-blue-600">Annual Benefit</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                <tr>
+                  <td className="px-6 py-3 text-gray-900 font-medium">Fuel Cost</td>
+                  <td className="px-6 py-3 text-center text-red-600 font-semibold">₹3.36Cr/yr</td>
+                  <td className="px-6 py-3 text-center text-green-600 font-semibold">₹1.40Cr/yr</td>
+                  <td className="px-6 py-3 text-center text-blue-600 font-bold">₹1.96Cr</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="px-6 py-3 text-gray-900 font-medium">Maintenance Cost</td>
+                  <td className="px-6 py-3 text-center text-red-600 font-semibold">₹84L/yr</td>
+                  <td className="px-6 py-3 text-center text-green-600 font-semibold">₹20L/yr</td>
+                  <td className="px-6 py-3 text-center text-blue-600 font-bold">₹64L</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-3 text-gray-900 font-medium">Vehicle Insurance</td>
+                  <td className="px-6 py-3 text-center text-red-600 font-semibold">₹56L/yr</td>
+                  <td className="px-6 py-3 text-center text-green-600 font-semibold">₹40L/yr</td>
+                  <td className="px-6 py-3 text-center text-blue-600 font-bold">₹16L</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="px-6 py-3 text-gray-900 font-medium">Road Tax & Permit</td>
+                  <td className="px-6 py-3 text-center text-red-600 font-semibold">₹28L/yr</td>
+                  <td className="px-6 py-3 text-center text-green-600 font-semibold">₹4L/yr</td>
+                  <td className="px-6 py-3 text-center text-blue-600 font-bold">₹24L</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-3 text-gray-900 font-medium bold-text">TOTAL ANNUAL COST</td>
+                  <td className="px-6 py-3 text-center text-red-600 font-bold text-lg">₹4.64Cr</td>
+                  <td className="px-6 py-3 text-center text-green-600 font-bold text-lg">₹2.04Cr</td>
+                  <td className="px-6 py-3 text-center text-blue-600 font-bold text-lg">₹2.60Cr</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <FleetTable />
       </div>
 
@@ -74,27 +162,27 @@ export default function FleetPage() {
 
         {/* Success Metrics */}
         <div className="mt-8 bg-white rounded-lg border border-gray-200 p-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Expected Outcomes</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-6">Financial Roadmap & Milestones</h3>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="text-center p-4">
-              <p className="text-3xl font-bold text-green-600">50</p>
-              <p className="text-sm text-gray-700 mt-2">EVs by end 2025</p>
-              <p className="text-xs text-gray-600">(86% of fleet)</p>
+            <div className="text-center p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg">
+              <p className="text-3xl font-bold text-green-600">Year 1</p>
+              <p className="text-sm text-gray-700 mt-2 font-semibold">₹25Cr Savings</p>
+              <p className="text-xs text-gray-600 mt-1">15 EVs deployed | Payback starts</p>
             </div>
-            <div className="text-center p-4">
-              <p className="text-3xl font-bold text-green-600">1,250</p>
-              <p className="text-sm text-gray-700 mt-2">Tons CO₂ reduction</p>
-              <p className="text-xs text-gray-600">annually</p>
+            <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg">
+              <p className="text-3xl font-bold text-blue-600">Year 2</p>
+              <p className="text-sm text-gray-700 mt-2 font-semibold">₹60Cr Cumulative</p>
+              <p className="text-xs text-gray-600 mt-1">35 EVs | 59% payback achieved</p>
             </div>
-            <div className="text-center p-4">
-              <p className="text-3xl font-bold text-green-600">₹43Cr</p>
-              <p className="text-sm text-gray-700 mt-2">Annual savings</p>
-              <p className="text-xs text-gray-600">fuel + maintenance</p>
+            <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg">
+              <p className="text-3xl font-bold text-orange-600">Year 3</p>
+              <p className="text-sm text-gray-700 mt-2 font-semibold">₹100Cr Cumulative</p>
+              <p className="text-xs text-gray-600 mt-1">50 EVs | 59% payback + FAME subsidy</p>
             </div>
-            <div className="text-center p-4">
-              <p className="text-3xl font-bold text-green-600">4.8yr</p>
-              <p className="text-sm text-gray-700 mt-2">Payback period</p>
-              <p className="text-xs text-gray-600">NPV positive</p>
+            <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg">
+              <p className="text-3xl font-bold text-purple-600">Year 5+</p>
+              <p className="text-sm text-gray-700 mt-2 font-semibold">₹160Cr+ Savings</p>
+              <p className="text-xs text-gray-600 mt-1">Pure profit phase | ROI maximized</p>
             </div>
           </div>
         </div>

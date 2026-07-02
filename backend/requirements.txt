@@ -1,6 +1,6 @@
 # ML & Data Science
-tensorflow==2.13.0
-torch==2.0.1
+tensorflow==2.16.1
+torch==2.2.2
 scikit-learn==1.3.0
 xgboost==2.0.1
 lightgbm==4.0.0

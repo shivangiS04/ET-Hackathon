@@ -1,0 +1,33 @@
+{
+  "test_type": "load_test_50k_vehicles",
+  "timestamp": "2026-07-06T21:20:26.560368",
+  "configuration": {
+    "concurrent_requests": 100,
+    "target_vehicle_count": 50000,
+    "thread_pool_size": 50
+  },
+  "throughput": {
+    "total_requests": 100,
+    "duration_seconds": 0.02,
+    "requests_per_second": 5424.5
+  },
+  "success_metrics": {
+    "successful_requests": 100,
+    "failed_requests": 0,
+    "success_rate_percent": 100.0,
+    "error_rate_percent": 0.0
+  },
+  "latency_metrics": {
+    "avg_ms": 0.14,
+    "p50_ms": 0.05,
+    "p95_ms": 0.52,
+    "p99_ms": 0.63,
+    "max_ms": 0.63
+  },
+  "status": {
+    "p99_latency_pass": true,
+    "error_rate_pass": true,
+    "success_rate_pass": true,
+    "overall": "PASS"
+  }
+}

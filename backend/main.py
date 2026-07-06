@@ -55,6 +55,10 @@ app.include_router(fleet_router, prefix="/api/v1", tags=["Fleet Management"])
 app.include_router(advanced_features_router, tags=["Advanced Features"])
 app.include_router(analytics_router, tags=["Analytics"])
 
+# Import and include technical validation router
+from routes.technical_validation import router as technical_validation_router
+app.include_router(technical_validation_router, tags=["Technical Validation"])
+
 
 @app.get("/")
 async def root():

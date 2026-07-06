@@ -1,0 +1,36 @@
+{
+  "validation_type": "battery_soh_prediction",
+  "timestamp": "2026-07-06T21:20:25.225010",
+  "test_set_size": 100,
+  "model_metrics": {
+    "rmse_percent": 1.729,
+    "r_squared": 0.886,
+    "execution_success_rate": 100.0,
+    "range_accuracy_percent": 58.0,
+    "mape_percent": 1.1
+  },
+  "latency_metrics": {
+    "avg_ms": 0.03,
+    "p50_ms": 0.03,
+    "p95_ms": 0.05,
+    "p99_ms": 0.05,
+    "max_ms": 0.07
+  },
+  "status": {
+    "rmse_pass": true,
+    "latency_pass": true,
+    "execution_pass": true,
+    "overall": "PASS"
+  },
+  "algorithm_details": {
+    "model_type": "Physics-based + Statistical",
+    "features": [
+      "Cycle count",
+      "Temperature (Arrhenius)",
+      "Thermal cycling stress",
+      "Fast charge stress"
+    ],
+    "algorithm": "Arrhenius equation + Rainflow counting",
+    "baseline_accuracy": "88.6%"
+  }
+}

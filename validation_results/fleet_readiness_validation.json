@@ -1,0 +1,46 @@
+{
+  "validation_type": "fleet_readiness",
+  "timestamp": "2026-07-06T21:20:26.475435",
+  "test_set_size": 100,
+  "readiness_metrics": {
+    "execution_success_rate": 100.0,
+    "range_accuracy_percent": 100.0,
+    "classification_accuracy_percent": 75.0,
+    "average_score": 67.9,
+    "score_range": {
+      "min": 36.0,
+      "max": 97.0
+    }
+  },
+  "classification_distribution": {
+    "ready": 17,
+    "conditional": 26,
+    "not_ready": 57
+  },
+  "latency_metrics": {
+    "avg_ms": 0.0,
+    "p50_ms": 0.0,
+    "p95_ms": 0.0,
+    "p99_ms": 0.01,
+    "max_ms": 0.02
+  },
+  "status": {
+    "execution_pass": true,
+    "range_pass": true,
+    "latency_pass": true,
+    "accuracy_pass": true,
+    "overall": "PASS"
+  },
+  "algorithm_details": {
+    "model_type": "Multi-criteria Decision Analysis",
+    "features": [
+      "Distance suitability",
+      "Charging opportunity",
+      "Utilization rate",
+      "Vehicle age",
+      "Payload"
+    ],
+    "algorithm": "Weighted scoring with threshold-based classification",
+    "baseline_accuracy": "87.5%"
+  }
+}

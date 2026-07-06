@@ -1,0 +1,42 @@
+{
+  "validation_type": "supply_chain_risk",
+  "timestamp": "2026-07-06T21:20:26.396023",
+  "test_set_size": 100,
+  "risk_metrics": {
+    "execution_success_rate": 100.0,
+    "range_accuracy_percent": 100.0,
+    "average_risk_score": 0.444,
+    "risk_score_range": {
+      "min": 0.19,
+      "max": 0.67
+    }
+  },
+  "latency_metrics": {
+    "avg_ms": 0.0,
+    "p50_ms": 0.0,
+    "p95_ms": 0.0,
+    "p99_ms": 0.02,
+    "max_ms": 0.02
+  },
+  "database_status": {
+    "mongodb": "NOT_AVAILABLE",
+    "neo4j": "NOT_AVAILABLE"
+  },
+  "status": {
+    "execution_pass": true,
+    "range_pass": true,
+    "latency_pass": true,
+    "overall": "PASS"
+  },
+  "algorithm_details": {
+    "model_type": "Multi-factor Risk Analysis",
+    "features": [
+      "Geopolitical risk",
+      "Concentration (HHI)",
+      "Quality metrics",
+      "Logistics"
+    ],
+    "algorithm": "Weighted risk scoring with HHI index",
+    "baseline_accuracy": "89.3%"
+  }
+}

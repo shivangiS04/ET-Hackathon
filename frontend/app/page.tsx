@@ -37,6 +37,7 @@ export default function Home() {
               <Link href="/fleet" className="text-gray-700 hover:text-blue-600 font-medium">Fleet</Link>
               <Link href="/advanced-features" className="text-gray-700 hover:text-purple-600 font-medium">Advanced</Link>
               <Link href="/reports" className="text-gray-700 hover:text-indigo-600 font-medium">Reports</Link>
+              <Link href="/technical-excellence" className="text-gray-700 hover:text-purple-600 font-medium">Technical</Link>
               <a href="http://localhost:8000/docs" target="_blank" className="text-gray-700 hover:text-slate-600 font-medium">API</a>
             </nav>
           </div>
@@ -49,6 +50,7 @@ export default function Home() {
               <Link href="/fleet" className="block px-4 py-2 hover:bg-gray-100 rounded text-gray-700">Fleet</Link>
               <Link href="/advanced-features" className="block px-4 py-2 hover:bg-gray-100 rounded text-gray-700">Advanced</Link>
               <Link href="/reports" className="block px-4 py-2 hover:bg-gray-100 rounded text-gray-700">Reports</Link>
+              <Link href="/technical-excellence" className="block px-4 py-2 hover:bg-gray-100 rounded text-gray-700">Technical</Link>
               <a href="http://localhost:8000/docs" target="_blank" className="block px-4 py-2 hover:bg-gray-100 rounded text-gray-700">API</a>
             </nav>
           )}

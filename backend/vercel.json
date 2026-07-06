@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "main.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb",
+        "runtime": "python3.11"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "main.py"
+    }
+  ],
+  "env": {
+    "MONGODB_URL": "@mongodb_url",
+    "REDIS_URL": "@redis_url",
+    "NEO4J_URL": "@neo4j_url",
+    "NEO4J_USER": "@neo4j_user",
+    "NEO4J_PASSWORD": "@neo4j_password",
+    "API_HOST": "0.0.0.0",
+    "LOG_LEVEL": "INFO",
+    "ENABLE_CACHING": "true",
+    "CACHE_TTL_SECONDS": "300"
+  }
+}

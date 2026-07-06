@@ -17,7 +17,7 @@ redis==5.0.1
 
 # Data Integration
 requests==2.31.0
-beautifulsoul4==4.12.2
+beautifulsoup4==4.12.2
 
 # Utilities
 python-dotenv==1.0.0

@@ -135,7 +135,7 @@ export default function BatteryDashboard() {
               <XAxis dataKey="date" />
               <YAxis domain={[85, 95]} />
               <Tooltip 
-                formatter={(value) => value.toFixed(1)}
+                formatter={(value) => typeof value === 'number' ? value.toFixed(1) : value}
                 labelFormatter={(label) => `Date: ${label}`}
                 content={({ active, payload }) => {
                   if (active && payload && payload.length) {
@@ -187,7 +187,7 @@ export default function BatteryDashboard() {
             <XAxis dataKey="month" />
             <YAxis label={{ value: 'RUL (Years)', angle: -90, position: 'insideLeft' }} />
             <Tooltip 
-              formatter={(value) => value.toFixed(2)}
+              formatter={(value) => typeof value === 'number' ? value.toFixed(2) : value}
               content={({ active, payload }) => {
                 if (active && payload && payload.length) {
                   const data = payload[0].payload;

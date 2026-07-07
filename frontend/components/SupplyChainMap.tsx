@@ -93,7 +93,7 @@ export default function SupplyChainMap() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} />
               <YAxis domain={[0, 1]} />
-              <Tooltip formatter={(value) => `${(value * 100).toFixed(0)}%`} />
+              <Tooltip formatter={(value) => typeof value === 'number' ? `${(value * 100).toFixed(0)}%` : String(value)} />
               <Bar dataKey="value" fill="#ef4444" />
             </BarChart>
           </ResponsiveContainer>

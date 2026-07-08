@@ -22,6 +22,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+/* Dark mode base styles */
+@layer base {
+  body {
+    @apply bg-white dark:bg-dark-950 text-gray-900 dark:text-gray-100 transition-colors duration-200;
+  }
+}
+
 /* Smooth animations */
 @layer utilities {
   .animate-spin {
@@ -45,4 +52,133 @@ code {
 
 .recharts-tooltip {
   outline: none;
+}
+
+/* Dark mode component styles */
+@layer components {
+  /* Card styles */
+  .card {
+    @apply bg-white dark:bg-dark-900 border border-gray-200 dark:border-dark-700 rounded-lg shadow-sm;
+  }
+  
+  /* Card with hover effect */
+  .card-hover {
+    @apply bg-white dark:bg-dark-900 border border-gray-200 dark:border-dark-700 rounded-lg shadow-sm hover:shadow-md dark:hover:shadow-dark-700/50 transition-all;
+  }
+  
+  /* Gradient backgrounds */
+  .gradient-bg {
+    @apply bg-gradient-to-br from-slate-50 to-slate-100 dark:from-dark-950 dark:to-dark-900;
+  }
+  
+  /* Header styles */
+  .header-bg {
+    @apply bg-white dark:bg-dark-900 border-b border-gray-200 dark:border-dark-700;
+  }
+  
+  /* Text styles */
+  .text-primary {
+    @apply text-gray-900 dark:text-gray-100;
+  }
+  
+  .text-secondary {
+    @apply text-gray-600 dark:text-gray-400;
+  }
+  
+  /* Button styles */
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-lg font-semibold transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 dark:bg-dark-700 text-gray-900 dark:text-gray-100 hover:bg-gray-300 dark:hover:bg-dark-600 rounded-lg font-semibold transition-colors;
+  }
+  
+  /* Input styles */
+  .input-base {
+    @apply bg-white dark:bg-dark-800 border border-gray-300 dark:border-dark-600 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent;
+  }
+  
+  /* Stat card colors (dark mode compatible) */
+  .stat-blue {
+    @apply bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800;
+  }
+  
+  .stat-green {
+    @apply bg-green-50 dark:bg-green-950/50 border border-green-200 dark:border-green-800;
+  }
+  
+  .stat-orange {
+    @apply bg-orange-50 dark:bg-orange-950/50 border border-orange-200 dark:border-orange-800;
+  }
+  
+  .stat-purple {
+    @apply bg-purple-50 dark:bg-purple-950/50 border border-purple-200 dark:border-purple-800;
+  }
+  
+  .stat-red {
+    @apply bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-800;
+  }
+  
+  .stat-yellow {
+    @apply bg-yellow-50 dark:bg-yellow-950/50 border border-yellow-200 dark:border-yellow-800;
+  }
+  
+  /* Gradient sections */
+  .section-gradient-blue {
+    @apply bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-950/30 dark:to-green-950/30 border border-blue-200 dark:border-blue-800;
+  }
+  
+  .section-gradient-purple {
+    @apply bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/30 dark:to-pink-950/30 border border-purple-200 dark:border-purple-800;
+  }
+  
+  .section-gradient-green {
+    @apply bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800;
+  }
+  
+  /* Table styles */
+  .table-row {
+    @apply hover:bg-gray-50 dark:hover:bg-dark-800 transition-colors;
+  }
+  
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold;
+  }
+  
+  .badge-green {
+    @apply bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300;
+  }
+  
+  .badge-blue {
+    @apply bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300;
+  }
+  
+  .badge-orange {
+    @apply bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300;
+  }
+  
+  .badge-purple {
+    @apply bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300;
+  }
+  
+  /* Footer */
+  .footer-bg {
+    @apply bg-gray-900 dark:bg-dark-950 text-white;
+  }
+}
+
+/* Recharts dark mode support */
+.dark .recharts-cartesian-grid-horizontal line,
+.dark .recharts-cartesian-grid-vertical line {
+  stroke: #334155;
+}
+
+.dark .recharts-text {
+  fill: #94a3b8;
+}
+
+.dark .recharts-tooltip-wrapper {
+  filter: none;
 }

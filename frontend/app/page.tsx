@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Battery, Zap, TrendingUp, AlertCircle, Menu, Leaf, Target, BarChart3, X } from 'lucide-react';
+import { Battery, Zap, TrendingUp, AlertCircle, Menu, Leaf, Target, BarChart3, X, Cpu } from 'lucide-react';
 import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Home() {
@@ -40,6 +40,7 @@ export default function Home() {
                 <Link href="/supply-chain" className="text-secondary hover:text-orange-600 dark:hover:text-orange-400 font-medium">Supply Chain</Link>
                 <Link href="/fleet" className="text-secondary hover:text-blue-600 dark:hover:text-blue-400 font-medium">Fleet</Link>
                 <Link href="/carbon" className="text-secondary hover:text-emerald-600 dark:hover:text-emerald-400 font-medium">Carbon</Link>
+                <Link href="/agents" className="text-secondary hover:text-purple-600 dark:hover:text-purple-400 font-medium flex items-center gap-1"><Cpu className="w-4 h-4" />Agents</Link>
                 <Link href="/advanced-features" className="text-secondary hover:text-purple-600 dark:hover:text-purple-400 font-medium">Advanced</Link>
                 <Link href="/reports" className="text-secondary hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">Reports</Link>
               </nav>
@@ -53,6 +54,7 @@ export default function Home() {
               <Link href="/supply-chain" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded text-secondary">Supply Chain</Link>
               <Link href="/fleet" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded text-secondary">Fleet</Link>
               <Link href="/carbon" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded text-secondary">Carbon</Link>
+              <Link href="/agents" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded text-secondary flex items-center gap-2"><Cpu className="w-4 h-4" />Agent Command Center</Link>
               <Link href="/advanced-features" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded text-secondary">Advanced</Link>
               <Link href="/reports" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded text-secondary">Reports</Link>
             </nav>

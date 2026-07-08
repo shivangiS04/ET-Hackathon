@@ -174,6 +174,118 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Platform Capabilities - 6 Card Grid */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold text-primary text-center mb-4">Platform Capabilities</h2>
+          <p className="text-center text-secondary mb-12 max-w-2xl mx-auto">
+            Comprehensive AI-powered intelligence across battery health, supply chain, fleet operations, manufacturing quality, carbon tracking, and multi-agent orchestration
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Battery Health */}
+            <Link href="/battery" className="card-hover card p-8 border-l-4 border-green-600 dark:border-green-500">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-green-100 dark:bg-green-900/30 rounded-lg p-3">
+                  <Battery className="w-6 h-6 text-green-600 dark:text-green-400" />
+                </div>
+                <h3 className="text-lg font-bold text-primary">Battery Health</h3>
+              </div>
+              <p className="text-secondary text-sm mb-4">
+                LSTM-based SOH prediction with thermal degradation modeling. RUL forecasting with 92.5% accuracy across India's hot climate zones.
+              </p>
+              <div className="flex items-center gap-2 text-green-600 dark:text-green-400 text-sm font-semibold">
+                <span>Explore</span>
+                <span>→</span>
+              </div>
+            </Link>
+
+            {/* Supply Chain Risk */}
+            <Link href="/supply-chain" className="card-hover card p-8 border-l-4 border-orange-600 dark:border-orange-500">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-orange-100 dark:bg-orange-900/30 rounded-lg p-3">
+                  <AlertCircle className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+                </div>
+                <h3 className="text-lg font-bold text-primary">Supply Chain Risk</h3>
+              </div>
+              <p className="text-secondary text-sm mb-4">
+                Herfindahl Index concentration analysis. Multi-tier supplier mapping with geopolitical risk assessment and alternative sourcing identification.
+              </p>
+              <div className="flex items-center gap-2 text-orange-600 dark:text-orange-400 text-sm font-semibold">
+                <span>Explore</span>
+                <span>→</span>
+              </div>
+            </Link>
+
+            {/* Fleet Readiness */}
+            <Link href="/fleet" className="card-hover card p-8 border-l-4 border-blue-600 dark:border-blue-500">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-blue-100 dark:bg-blue-900/30 rounded-lg p-3">
+                  <Target className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                </div>
+                <h3 className="text-lg font-bold text-primary">Fleet Readiness</h3>
+              </div>
+              <p className="text-secondary text-sm mb-4">
+                EV transition capability assessment. TCO payback analysis with 4.2-year ROI modeling and charge infrastructure mapping across India.
+              </p>
+              <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 text-sm font-semibold">
+                <span>Explore</span>
+                <span>→</span>
+              </div>
+            </Link>
+
+            {/* Manufacturing Quality (NEW) */}
+            <Link href="/quality" className="card-hover card p-8 border-l-4 border-cyan-600 dark:border-cyan-500">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-cyan-100 dark:bg-cyan-900/30 rounded-lg p-3">
+                  <BarChart3 className="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
+                </div>
+                <h3 className="text-lg font-bold text-primary">Manufacturing Quality</h3>
+              </div>
+              <p className="text-secondary text-sm mb-4">
+                Statistical Process Control (SPC) with Isolation Forest anomaly detection. Real-time quality drift alerts and defect source traceability.
+              </p>
+              <div className="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 text-sm font-semibold">
+                <span>Explore</span>
+                <span>→</span>
+              </div>
+            </Link>
+
+            {/* Carbon & Net Zero (NEW) */}
+            <Link href="/carbon" className="card-hover card p-8 border-l-4 border-emerald-600 dark:border-emerald-500">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-emerald-100 dark:bg-emerald-900/30 rounded-lg p-3">
+                  <Leaf className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+                </div>
+                <h3 className="text-lg font-bold text-primary">Carbon & Net Zero</h3>
+              </div>
+              <p className="text-secondary text-sm mb-4">
+                Scope 1 & 3 emissions tracking with GRI/UNFCCC alignment. FAME-II net-zero roadmap generation with carbon credit estimation.
+              </p>
+              <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-sm font-semibold">
+                <span>Explore</span>
+                <span>→</span>
+              </div>
+            </Link>
+
+            {/* Agent Command Center (NEW) */}
+            <Link href="/agents" className="card-hover card p-8 border-l-4 border-purple-600 dark:border-purple-500">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-purple-100 dark:bg-purple-900/30 rounded-lg p-3">
+                  <Cpu className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                </div>
+                <h3 className="text-lg font-bold text-primary">Agent Command Center</h3>
+              </div>
+              <p className="text-secondary text-sm mb-4">
+                Multi-agent orchestration coordinating 6 AI agents. Cross-agent conflict resolution with fleet health scoring and executive insights.
+              </p>
+              <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 text-sm font-semibold">
+                <span>Explore</span>
+                <span>→</span>
+              </div>
+            </Link>
+          </div>
+        </div>
+
         {/* Platform Performance */}
         <div className="card p-12 mb-20">
           <h2 className="text-3xl font-bold text-primary text-center mb-12">Platform Performance</h2>
@@ -254,22 +366,30 @@ export default function Home() {
         {/* Quick Access */}
         <div className="section-gradient-green rounded-lg p-8">
           <h3 className="text-2xl font-bold text-primary mb-6">Quick Access</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Link href="/battery" className="block p-4 card-hover">
-              <p className="font-semibold text-primary">Battery SOH Predictions</p>
-              <p className="text-sm text-secondary mt-1">Arrhenius temperature modeling</p>
+              <p className="font-semibold text-primary">🔋 Battery SOH Predictions</p>
+              <p className="text-sm text-secondary mt-1">LSTM thermal modeling & RUL forecast</p>
             </Link>
             <Link href="/supply-chain" className="block p-4 card-hover">
-              <p className="font-semibold text-primary">Supply Chain Heatmap</p>
+              <p className="font-semibold text-primary">🚚 Supply Chain Heatmap</p>
               <p className="text-sm text-secondary mt-1">HHI concentration analysis</p>
             </Link>
             <Link href="/fleet" className="block p-4 card-hover">
-              <p className="font-semibold text-primary">Fleet Electrification</p>
+              <p className="font-semibold text-primary">🚗 Fleet Electrification</p>
               <p className="text-sm text-secondary mt-1">TCO & payback modeling</p>
             </Link>
-            <Link href="/carbon-tracker" className="block p-4 card-hover">
-              <p className="font-semibold text-primary">Net Zero Tracker</p>
-              <p className="text-sm text-secondary mt-1">Carbon reduction roadmap</p>
+            <Link href="/quality" className="block p-4 card-hover">
+              <p className="font-semibold text-primary">⚙️ Manufacturing Quality</p>
+              <p className="text-sm text-secondary mt-1">SPC & defect traceability</p>
+            </Link>
+            <Link href="/carbon" className="block p-4 card-hover">
+              <p className="font-semibold text-primary">🌱 Net Zero Tracker</p>
+              <p className="text-sm text-secondary mt-1">Carbon roadmap & FAME-II aligned</p>
+            </Link>
+            <Link href="/agents" className="block p-4 card-hover">
+              <p className="font-semibold text-primary">🤖 Agent Command Center</p>
+              <p className="text-sm text-secondary mt-1">Multi-agent orchestration</p>
             </Link>
           </div>
         </div>
@@ -285,6 +405,9 @@ export default function Home() {
                 <li><Link href="/battery" className="hover:text-white">Battery Health</Link></li>
                 <li><Link href="/supply-chain" className="hover:text-white">Supply Chain</Link></li>
                 <li><Link href="/fleet" className="hover:text-white">Fleet Readiness</Link></li>
+                <li><Link href="/quality" className="hover:text-white">Manufacturing Quality</Link></li>
+                <li><Link href="/carbon" className="hover:text-white">Carbon & Net Zero</Link></li>
+                <li><Link href="/agents" className="hover:text-white">Agent Command Center</Link></li>
               </ul>
             </div>
             <div>

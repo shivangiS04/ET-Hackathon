@@ -16,6 +16,7 @@ from routes.fleet import router as fleet_router
 from routes.advanced_features import router as advanced_features_router
 from routes.analytics import router as analytics_router
 from routes.quality import router as quality_router
+from routes.carbon import router as carbon_router
 
 # Import middleware and services
 from middleware import setup_middleware
@@ -54,6 +55,7 @@ app.include_router(battery_router, prefix="/api/v1", tags=["Battery & Health"])
 app.include_router(supply_chain_router, prefix="/api/v1", tags=["Supply Chain"])
 app.include_router(fleet_router, prefix="/api/v1", tags=["Fleet Management"])
 app.include_router(quality_router, prefix="/api/v1/quality", tags=["Manufacturing Quality"])
+app.include_router(carbon_router, prefix="/api/v1/carbon", tags=["Carbon & Net Zero"])
 app.include_router(advanced_features_router, tags=["Advanced Features"])
 app.include_router(analytics_router, tags=["Analytics"])
 

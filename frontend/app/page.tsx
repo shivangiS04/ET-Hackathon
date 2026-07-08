@@ -39,6 +39,7 @@ export default function Home() {
                 <Link href="/battery" className="text-secondary hover:text-green-600 dark:hover:text-green-400 font-medium">Battery</Link>
                 <Link href="/supply-chain" className="text-secondary hover:text-orange-600 dark:hover:text-orange-400 font-medium">Supply Chain</Link>
                 <Link href="/fleet" className="text-secondary hover:text-blue-600 dark:hover:text-blue-400 font-medium">Fleet</Link>
+                <Link href="/carbon" className="text-secondary hover:text-emerald-600 dark:hover:text-emerald-400 font-medium">Carbon</Link>
                 <Link href="/advanced-features" className="text-secondary hover:text-purple-600 dark:hover:text-purple-400 font-medium">Advanced</Link>
                 <Link href="/reports" className="text-secondary hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">Reports</Link>
               </nav>
@@ -51,6 +52,7 @@ export default function Home() {
               <Link href="/battery" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded text-secondary">Battery</Link>
               <Link href="/supply-chain" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded text-secondary">Supply Chain</Link>
               <Link href="/fleet" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded text-secondary">Fleet</Link>
+              <Link href="/carbon" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded text-secondary">Carbon</Link>
               <Link href="/advanced-features" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded text-secondary">Advanced</Link>
               <Link href="/reports" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded text-secondary">Reports</Link>
             </nav>

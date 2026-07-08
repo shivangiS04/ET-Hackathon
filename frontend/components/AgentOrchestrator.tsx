@@ -78,10 +78,17 @@ export default function AgentOrchestrator() {
 
   const fetchAgentStatus = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/v1/agents/status');
+      const response = await fetch('http://localhost:8000/api/v1/agents/status', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       if (response.ok) {
         const data = await response.json();
         setAgentStatuses(data.agents || []);
+      } else {
+        console.error('Failed to fetch agent status:', response.status);
       }
     } catch (err) {
       console.error('Error fetching agent status:', err);
@@ -95,7 +102,13 @@ export default function AgentOrchestrator() {
       setLoading(true);
 
       const response = await fetch(
-        'http://localhost:8000/api/v1/agents/orchestrate?fleet_id=FLEET_001&vehicle_count=100&run_parallel=false'
+        'http://localhost:8000/api/v1/agents/orchestrate?fleet_id=FLEET_001&vehicle_count=100&run_parallel=false',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
       );
 
       if (response.ok) {
@@ -103,11 +116,12 @@ export default function AgentOrchestrator() {
         setOrchestrationResult(data);
         await fetchAgentStatus();
       } else {
-        setError('Failed to run orchestration');
+        const errorData = await response.json().catch(() => ({}));
+        setError(errorData.detail || 'Failed to run orchestration');
       }
     } catch (err) {
-      setError('Error running orchestration');
-      console.error(err);
+      setError(`Error running orchestration: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      console.error('Orchestration error:', err);
     } finally {
       setLoading(false);
       setRunningAllAgents(false);

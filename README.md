@@ -226,7 +226,6 @@ Connect GitHub repository to Render. The platform auto-detects `render.yaml` con
 ## Support
 
 - API Explorer: `http://localhost:8000/docs`
-- Issue Resolution: See `DEMO_SCRIPT.md` for Q&A
 - Local Testing: Follow terminal output for debugging
 
 ---

@@ -19,8 +19,8 @@ export default function Home() {
                 <Zap className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-primary">EV Intelligence</h1>
-                <p className="text-xs text-secondary">Supply Chain & Asset Intelligence</p>
+                <h1 className="text-2xl font-bold text-primary">Savaari Saarathi</h1>
+                <p className="text-xs text-secondary">EV Intelligence Platform</p>
               </div>
             </div>
             

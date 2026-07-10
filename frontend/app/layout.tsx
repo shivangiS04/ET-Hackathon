@@ -3,13 +3,13 @@ import './globals.css'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
 export const metadata: Metadata = {
-  title: 'EV Intelligence Platform',
-  description: 'AI-powered Supply Chain & Asset Intelligence for Industrial EV Transition',
+  title: 'Savaari Saarathi - EV Intelligence Platform',
+  description: 'Savaari Saarathi - AI-powered Supply Chain & Asset Intelligence for Industrial EV Transition in India',
   viewport: 'width=device-width, initial-scale=1.0, maximum-scale=5.0',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'EV Intelligence',
+    title: 'Savaari Saarathi',
   },
   formatDetection: {
     telephone: false,

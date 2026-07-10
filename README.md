@@ -1,6 +1,6 @@
-# EV Supply Chain & Asset Intelligence Platform
+# Savaari Saarathi - EV Intelligence Platform
 
-AI-powered fleet management with predictive analytics and supply chain visibility for industrial electric vehicle operations.
+AI-powered fleet management with predictive analytics and supply chain visibility for industrial electric vehicle operations in India.
 
 ## Quick Start
 
@@ -226,9 +226,8 @@ Connect GitHub repository to Render. The platform auto-detects `render.yaml` con
 ## Support
 
 - API Explorer: `http://localhost:8000/docs`
-- Issue Resolution: See `DEMO_SCRIPT.md` for Q&A
 - Local Testing: Follow terminal output for debugging
 
 ---
 
-ET AI Hackathon 2026
+Savaari Saarathi - EV Intelligence Platform | ET AI Hackathon 2026

@@ -1,0 +1,356 @@
+================================================================================
+              SAVAARI SAARATHI - TEST EXECUTION COMMANDS
+================================================================================
+
+QUICK START (Copy & Paste)
+─────────────────────────────────────────────────────────────────────────────
+
+# 1. Navigate to backend tests directory
+cd /Users/shivangisingh/Desktop/ET-Hackathon/backend/tests
+
+# 2. Run all tests with detailed output
+pytest -v
+
+# 3. Generate coverage report
+pytest --cov=../services --cov=../routes --cov-report=html
+
+# 4. View coverage report
+open htmlcov/index.html
+
+
+INDIVIDUAL TEST EXECUTION
+─────────────────────────────────────────────────────────────────────────────
+
+# UNIT TESTS
+
+# Battery Service Tests (22 tests)
+pytest test_battery_service.py -v
+pytest test_battery_service.py::TestBatterySOHPrediction -v
+pytest test_battery_service.py::TestBatterySOHPrediction::test_predict_soh_healthy_battery -v
+
+# Quality Service Tests (18 tests)
+pytest test_quality_service.py -v
+pytest test_quality_service.py::TestQualityDriftDetection -v
+
+# Carbon Tracking Tests (14 tests)
+pytest test_carbon_service.py -v
+pytest test_carbon_service.py::TestEmissionCalculation::test_diesel_emission_calculation -v
+
+# Geospatial Service Tests (17 tests)
+pytest test_geospatial_service.py -v
+pytest test_geospatial_service.py::TestChargingInfrastructurePlanning -v
+
+# Supply Chain Service Tests (18 tests)
+pytest test_supply_chain_service.py -v
+pytest test_supply_chain_service.py::TestMaterialExtraction -v
+
+
+# API ROUTE TESTS (20 tests)
+pytest test_api_routes.py -v
+pytest test_api_routes.py::TestBatteryRoutes -v
+pytest test_api_routes.py::TestBatteryRoutes::test_predict_battery_soh_endpoint -v
+
+
+# INTEGRATION TESTS (10 tests)
+pytest test_integration.py -v
+pytest test_integration.py::TestBatteryHealthWorkflow -v
+
+
+# PERFORMANCE TESTS (14 tests)
+pytest test_performance.py -v
+pytest test_performance.py::TestResponseTime -v
+
+
+GROUPED EXECUTION
+─────────────────────────────────────────────────────────────────────────────
+
+# All unit tests
+pytest test_battery_service.py test_quality_service.py test_carbon_service.py \
+        test_geospatial_service.py test_supply_chain_service.py -v
+
+# All core tests (units + API)
+pytest test_*_service.py test_api_routes.py -v
+
+# Everything except performance
+pytest -k "not performance" -v
+
+# Everything (full suite)
+pytest -v
+
+
+SHELL SCRIPT SHORTCUTS
+─────────────────────────────────────────────────────────────────────────────
+
+# Navigate to tests
+cd /Users/shivangisingh/Desktop/ET-Hackathon/backend/tests
+
+# Quick test runner
+bash quick_test.sh battery        # Battery tests only
+bash quick_test.sh quality        # Quality tests only
+bash quick_test.sh carbon         # Carbon tests only
+bash quick_test.sh geospatial     # Geospatial tests only
+bash quick_test.sh supply-chain   # Supply chain tests only
+bash quick_test.sh api            # API route tests only
+bash quick_test.sh integration    # Integration tests only
+bash quick_test.sh performance    # Performance tests only
+bash quick_test.sh unit           # All unit tests
+bash quick_test.sh all            # All tests
+
+
+PYTHON RUNNER
+─────────────────────────────────────────────────────────────────────────────
+
+cd /Users/shivangisingh/Desktop/ET-Hackathon/backend/tests
+python run_all_tests.py
+
+
+ADVANCED PYTEST OPTIONS
+─────────────────────────────────────────────────────────────────────────────
+
+# Stop on first failure
+pytest -x
+
+# Show local variables on failure
+pytest -l
+
+# Run debugger on failure (interactive)
+pytest --pdb
+
+# Verbose + detailed
+pytest -vv
+
+# Quiet output (summary only)
+pytest -q
+
+# Show slowest 10 tests
+pytest --durations=10
+
+# Run only tests matching pattern
+pytest -k "battery and healthy" -v
+
+# Run tests matching marker
+pytest -m "unit" -v
+pytest -m "not performance" -v
+
+# Show all test names without running
+pytest --collect-only -q
+
+# Run with different output format
+pytest --tb=short          # Short traceback
+pytest --tb=line          # One line per error
+pytest --tb=native        # Native Python traceback
+pytest --tb=no            # No traceback
+
+
+COVERAGE OPTIONS
+─────────────────────────────────────────────────────────────────────────────
+
+# Generate coverage report
+pytest --cov=../services --cov=../routes --cov-report=html
+
+# Show coverage by line
+pytest --cov=../services --cov-report=term-missing
+
+# Coverage for specific file
+pytest --cov=../services/battery_service --cov-report=html
+
+# Multiple formats
+pytest --cov=../services \
+       --cov-report=html \
+       --cov-report=term-missing \
+       --cov-report=xml
+
+
+PARALLEL EXECUTION
+─────────────────────────────────────────────────────────────────────────────
+
+# Requires: pip install pytest-xdist
+# Run with N workers (auto = CPU count)
+pytest -n auto
+pytest -n 4
+
+# Distribute by file
+pytest -n auto --dist loadfile
+
+
+CONTINUOUS TESTING
+─────────────────────────────────────────────────────────────────────────────
+
+# Requires: pip install pytest-watch
+# Watch mode - re-run on file change
+ptw
+
+# Watch specific file
+ptw test_battery_service.py
+
+# Watch with custom pytest args
+ptw -- -v --tb=short
+
+
+FILTERING & SELECTION
+─────────────────────────────────────────────────────────────────────────────
+
+# Run specific test class
+pytest test_battery_service.py::TestBatterySOHPrediction
+
+# Run specific test method
+pytest test_battery_service.py::TestBatterySOHPrediction::test_predict_soh_healthy_battery
+
+# Run multiple specific tests
+pytest test_battery_service.py::TestBatterySOHPrediction::test_predict_soh_healthy_battery \
+        test_battery_service.py::TestBatterySOHPrediction::test_predict_soh_degraded_battery
+
+# Run by keyword
+pytest -k "soh" -v
+pytest -k "not slow" -v
+pytest -k "battery and not critical" -v
+
+
+JUNIT XML OUTPUT (For CI/CD)
+─────────────────────────────────────────────────────────────────────────────
+
+# Generate JUnit XML report
+pytest --junit-xml=junit.xml -v
+
+# For Jenkins/GitLab CI
+pytest --junit-xml=report.xml --junit-prefix=savaari
+
+
+JSON REPORT
+─────────────────────────────────────────────────────────────────────────────
+
+# Requires: pip install pytest-json-report
+pytest --json-report --json-report-file=report.json
+
+
+HTML REPORT
+─────────────────────────────────────────────────────────────────────────────
+
+# Requires: pip install pytest-html
+pytest --html=report.html --self-contained-html
+pytest --html=report.html --html-self-contained -v
+
+
+PERFORMANCE ANALYSIS
+─────────────────────────────────────────────────────────────────────────────
+
+# Show slowest 20 tests
+pytest --durations=20
+
+# Show slowest 20 tests for this run
+pytest --durations=20 --durations-min=0.01
+
+# Profile tests with pytest-benchmark
+# Requires: pip install pytest-benchmark
+pytest --benchmark-only
+
+
+DEBUGGING
+─────────────────────────────────────────────────────────────────────────────
+
+# Drop into debugger on failure
+pytest --pdb
+
+# Drop into debugger on collection errors
+pytest --pdbcls=IPython.terminal.debugger:TerminalPdb
+
+# Print captured output on test failure
+pytest -s
+
+# Show print statements
+pytest test_battery_service.py -s
+
+# Capture no output (show everything)
+pytest -p no:capturing
+
+
+TEST DISCOVERY & INSPECTION
+─────────────────────────────────────────────────────────────────────────────
+
+# List all tests
+pytest --collect-only
+
+# Quiet list of all tests
+pytest --collect-only -q
+
+# Show fixtures
+pytest --fixtures
+
+# Show environment info
+pytest --version
+pytest --info
+
+
+COMBINATION EXAMPLES
+─────────────────────────────────────────────────────────────────────────────
+
+# Full test run with coverage and HTML report
+pytest -v --cov=../services --cov=../routes \
+       --cov-report=html --cov-report=term-missing \
+       --html=test_report.html --self-contained-html
+
+# Performance testing with profiling
+pytest test_performance.py -v --durations=20 -s
+
+# Debug failing test with full output
+pytest test_battery_service.py -vv -s --tb=long --pdb
+
+# Run tests matching pattern with coverage
+pytest -k "emission" -v --cov=../services --cov-report=term-missing
+
+# Parallel execution with coverage
+pytest -n auto -v --cov=../services --cov-report=html
+
+# Complete test run with all reports
+pytest -v \
+       --cov=../services --cov=../routes \
+       --cov-report=html --cov-report=term-missing \
+       --html=test_report.html --self-contained-html \
+       --junit-xml=junit.xml \
+       --durations=20
+
+
+DEFAULT COMMAND (All tests, verbose, with basic metrics)
+─────────────────────────────────────────────────────────────────────────────
+
+pytest -v --tb=short -ra
+
+
+RECOMMENDED COMMANDS BY SCENARIO
+─────────────────────────────────────────────────────────────────────────────
+
+Developer (Local Testing):
+    pytest -v -k "battery" --tb=short
+
+CI/CD Pipeline:
+    pytest --junit-xml=junit.xml --cov=services --cov-report=xml
+
+Code Review:
+    pytest -v --cov=services --cov=routes --cov-report=term-missing
+
+Before Commit:
+    pytest -x  # Stop on first failure
+
+Full Regression:
+    pytest --durations=20 --cov=services --cov=routes --cov-report=html
+
+Performance Baseline:
+    pytest test_performance.py -v --durations=20
+
+
+CLEANUP
+─────────────────────────────────────────────────────────────────────────────
+
+# Remove test cache
+rm -rf .pytest_cache __pycache__
+
+# Remove coverage reports
+rm -rf htmlcov .coverage
+
+# Clean all pytest artifacts
+pytest --co -q > /dev/null && rm -rf .pytest_cache __pycache__ htmlcov .coverage
+
+
+================================================================================
+For more information, see TESTING_GUIDE.txt or run: pytest --help
+================================================================================

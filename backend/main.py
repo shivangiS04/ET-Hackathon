@@ -18,6 +18,7 @@ from routes.analytics import router as analytics_router
 from routes.quality import router as quality_router
 from routes.carbon import router as carbon_router
 from routes.agents import router as agents_router
+from routes.top3_enhancements import router as top3_router
 
 # Import middleware and services
 from middleware import setup_middleware

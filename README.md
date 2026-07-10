@@ -6,6 +6,25 @@ AI-powered platform for electric vehicle fleet management, battery health predic
 
 ---
 
+## ⚡ Quick Start (15 Minutes)
+
+**👉 Start here:** `GETTING_STARTED.md` ← Read this first!
+
+Or jump straight in:
+
+```bash
+# Terminal 1: Backend
+cd backend && python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt && uvicorn main:app --reload
+
+# Terminal 2: Frontend
+cd frontend && npm install && npm run dev
+```
+
+Then open: **http://localhost:3000**
+
+---
+
 ## Tech Stack
 
 **Backend:** Python 3.11 | FastAPI | TensorFlow | PostgreSQL | Redis  
@@ -16,29 +35,36 @@ AI-powered platform for electric vehicle fleet management, battery health predic
 
 ## Quick Start
 
-### Backend
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-Backend: http://localhost:8000  
-Docs: http://localhost:8000/docs
+### Without Docker (Recommended for Local Development)
 
-### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Frontend: http://localhost:3000
+**See detailed guide:** `LOCAL_TESTING.md`
 
-### Docker (Full Stack)
+**Quick Steps:**
+
+1. **Backend** (Terminal 1)
+   ```bash
+   cd backend
+   python -m venv venv
+   source venv/bin/activate  # Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   uvicorn main:app --reload
+   ```
+   → http://localhost:8000
+
+2. **Frontend** (Terminal 2)
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+   → http://localhost:3000
+
+### With Docker (Production)
+
 ```bash
 docker-compose up
 ```
+
 - Frontend: http://localhost:3000
 - Backend: http://localhost:8000
 - PostgreSQL: localhost:5432 (ev_user / ev_password)
@@ -171,7 +197,35 @@ Coordinates 6 specialized agents with cross-agent conflict resolution:
 
 ## Testing
 
-### Run Validation Tests
+### Local Testing (Recommended)
+
+#### 1. Start Backend
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+✅ Backend running at: http://localhost:8000
+
+#### 2. Start Frontend (in a new terminal)
+```bash
+cd frontend
+npm install  # Only first time
+npm run dev
+```
+✅ Frontend running at: http://localhost:3000
+
+#### 3. Test the Dashboard
+- Home: http://localhost:3000
+- Battery Health: http://localhost:3000/battery
+- Supply Chain: http://localhost:3000/supply-chain
+- Fleet Readiness: http://localhost:3000/fleet
+- Technical Excellence: http://localhost:3000/technical-excellence
+- API Docs: http://localhost:8000/docs
+
+### Validation Tests
 ```bash
 cd backend
 python -m pytest tests/
@@ -181,6 +235,21 @@ python -m pytest tests/
 ```bash
 cd backend/load_testing
 bash run_load_tests.sh
+```
+
+### View Validation Results
+```bash
+# Battery validation
+cat validation_results/battery_soh_validation.json
+
+# Supply chain validation
+cat validation_results/supply_chain_validation.json
+
+# Fleet readiness validation
+cat validation_results/fleet_readiness_validation.json
+
+# Load test report
+cat load_test_report_50k.json
 ```
 
 ---
@@ -258,12 +327,49 @@ docker-compose.yml
 
 ---
 
+## Demo Presentation (5 Minutes)
+
+For the ET AI Hackathon presentation, we've created a comprehensive demo script:
+
+📄 **See:** `DEMO_SCRIPT.md`
+
+**Demo includes:**
+- Problem statement & India EV context
+- Live battery health prediction (RMSE 1.73%)
+- Supply chain risk analysis (89.3% accuracy)
+- Fleet readiness scoring (87.5% accuracy)
+- Technical validation proof
+- India policy impact & ROI
+- Scalability architecture (1M vehicles)
+- Q&A responses for judges
+
+**Quick Demo URLs:**
+```
+Home:              http://localhost:3000
+Battery:           http://localhost:3000/battery
+Supply Chain:      http://localhost:3000/supply-chain
+Fleet:             http://localhost:3000/fleet
+Technical Proof:   http://localhost:3000/technical-excellence
+Scalability:       http://localhost:3000/scalability-architecture
+API Docs:          http://localhost:8000/docs
+```
+
+---
+
 ## Documentation
 
-- **API Docs:** http://localhost:8000/docs
-- **Testing:** See `TESTING_SUMMARY.md`
-- **Agents:** See `AGENT_ORCHESTRATOR_SUMMARY.md`
-- **Deployment:** See `DEPLOYMENT_QUICK_START.md`
+**Lost? Start here:** `DOCUMENTATION_MAP.md` ← Guides you to the right document
+
+Key documents:
+- **Getting Started:** `GETTING_STARTED.md` ← 15-minute setup guide
+- **Local Testing:** `LOCAL_TESTING.md` ← Detailed development guide
+- **Deployment:** `DEPLOYMENT_LOCAL_AND_RENDER.md` ← Production guide
+- **Demo Presentation:** `DEMO_SCRIPT.md` ← 5-minute hackathon script
+- **Pre-Demo Prep:** `DEMO_DAY_CHECKLIST.md` ← Before you present
+- **API Docs:** http://localhost:8000/docs ← Interactive API explorer
+- **Test Results:** `TESTING_SUMMARY.md` ← Validation metrics
+- **Agents:** `AGENT_ORCHESTRATOR_SUMMARY.md` ← Multi-agent details
+- **Quick Deploy:** `DEPLOYMENT_QUICK_START.md` ← TL;DR version
 
 ---
 
